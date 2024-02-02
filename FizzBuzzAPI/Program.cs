@@ -1,4 +1,5 @@
 using FizzBuzzAPI.Services;
+using FizzBuzzAPI.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IFizzBuzzService, FizzBuzzService>();
+builder.Services.AddScoped<IMathUtil, MathUtil>();
 builder.Services.AddControllers();
 
 var app = builder.Build();

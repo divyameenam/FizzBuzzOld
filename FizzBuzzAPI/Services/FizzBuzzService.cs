@@ -1,9 +1,16 @@
 ﻿using FizzBuzzAPI.Model;
+using FizzBuzzAPI.Utility;
 
 namespace FizzBuzzAPI.Services
 {
     public class FizzBuzzService : IFizzBuzzService
     {
+        private readonly IMathUtil _math;
+
+        public FizzBuzzService(IMathUtil math)
+        {
+            this._math = math;
+        }
         public List<string> GetFizzBuzzResult(string[] input)
         {
             List<string> result = new List<string>();
@@ -12,17 +19,17 @@ namespace FizzBuzzAPI.Services
             {
                 if (int.TryParse(item, out value))
                 {
-                    if (value % 3 == 0 && value % 5 == 0)
+                    if (_math.Division(value,3) == 0 && _math.Division(value, 5) == 0)
                     {
                         result.Add(item + " - " + Constants.strFizzBuzz);
                     }
                     else
-                    if (value % 3 == 0)
+                    if (_math.Division(value, 3) == 0)
                     {
                         result.Add(item + " - " + Constants.strFizz);
                     }
                     else
-                    if (value % 5 == 0)
+                    if (_math.Division(value, 5) == 0)
                     {
                         result.Add(item + " - " + Constants.strBuzz);
                     }
